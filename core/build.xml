@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+<!-- ================================= 
+          target: name              
+         ================================= -->
+    <target name="native2ascii" description="description">
+		<!--delete file="bin/META-INF/ad.exception.code.properties"></delete-->
+        <native2ascii dest="bin/META-INF/" encoding="utf-8" src="src/META-INF/">
+        	
+        </native2ascii>
+    </target>
+	
+
+</project>

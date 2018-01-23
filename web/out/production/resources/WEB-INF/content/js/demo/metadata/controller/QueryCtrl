@@ -1,0 +1,77 @@
+{
+    "id": "ExtBox1-ext-gen26779",
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "stores": [
+            "MyQueryStore"
+        ],
+        "designer|userClassName": "QueryCtrl"
+    },
+    "customConfigs": [],
+    "designerId": "a62e1c30-06bc-40c2-81d1-bf52540a608d",
+    "$viewOrder": 2,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen6582",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBtnQryClick",
+                "implHandler": "console.log('onBtnQryClick');\r\nthis.getTabPanel().getActiveTab().down(\"gridpanel\").getStore().load();\r\nreturn false;",
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "Ext.button.Button",
+                "designer|controlQuery": "#btnQry",
+                "designer|userClassName": "onBtnQryClick"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen6900",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "tabPanel",
+                "selector": "#tabPanel",
+                "designer|userClassName": "tabPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen18999",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "init",
+                "designer|params": [
+                    "application"
+                ],
+                "implHandler": "this.getMyQueryStoreStore().on(\r\n        {\r\n            'load' : function(me) {\r\n                me.loadData(generateData(8));\r\n            }\r\n        }\r\n);",
+                "designer|userClassName": "init"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        }
+    ]
+}

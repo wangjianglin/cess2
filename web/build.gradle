@@ -1,0 +1,30 @@
+//uploadArchives {
+//	repositories {
+//		mavenDeployer {
+//			pom.artifactId = 'lin-web'
+//		}
+//	}
+//}
+
+apply plugin: 'java'
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+}
+
+dependencies {
+
+    provided "javax.servlet:javax.servlet-api:3.1.0"
+    provided "javax.servlet:jstl:1.2"
+    provided "javax.servlet.jsp:javax.servlet.jsp-api:2.3.1"
+
+
+    compile project(':comm')
+    compile project(':util')
+}

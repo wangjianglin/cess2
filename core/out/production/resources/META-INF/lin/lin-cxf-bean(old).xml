@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:http="http://cxf.apache.org/transports/http/configuration"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+
+
+	<!--导入CXF扩充XML标记库，用于在Spring启用WebService标记 -->
+	<import resource="classpath*:META-INF/cxf/cxf.xml" />
+	<!-- <import resource="classpath*:META-INF/cxf/cxf-extension-soap.xml" /> -->
+	<import resource="classpath*:META-INF/cxf/cxf-servlet.xml" />
+
+	<!--<jaxws:endpoint id="helloWorld" implementor="com.demo.HelloWorldImpl" 
+		address="/helloWorld"/> -->
+	<!--<beanid="client"class="com.demo.HelloWorld"factory-bean="clientFactory" 
+		factory-method="create"/><beanid="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">                            
+		<propertyname="serviceClass"value="com.demo.HelloWorld"/>                             
+		<propertyname="address"value="http://localhost:8080/s/webservice/helloWorld" 
+		/></bean> -->
+
+	<cxf:bus>
+		<cxf:features>
+			<bean class="org.apache.cxf.transport.common.gzip.GZIPFeature" />
+		</cxf:features>
+	</cxf:bus>
+
+	<http:conduit name="*.http-conduit">
+		<http:client AllowChunking="false" />
+	</http:conduit>
+	<!--<jaxws:endpointid="bookShelfService" implementor="com.aranin.weblog4j.services.BookShelfServiceImpl" 
+		address="/bookshelfservice"/> -->
+	<!--<beanid="bookserviceclass"class="com.aranin.weblog4j.services.rest.BookService" 
+		/> -->
+
+	<!--配置方案一使用JAX-WS标准配置jaxws:endpoint，发布服务 -->
+	<!--id:springbean标识，implementor：服务实现类，address：服务发布路径 -->
+	<!--<jaxws:endpointid="merchant_1" implementor="com.cxfdemo.server.service.impl.IMerchantServiceImpl"address="/m_1"> -->
+	<!--可选配置入口拦截器 -->
+	<!-- <jaxws:inInterceptors> <ref bean="inLoggingInterceptor"/> </jaxws:inInterceptors> -->
+	<!--可选配置出口拦截器 -->
+	<!-- <jaxws:outInterceptors> <ref bean="outLoggingInterceptor"/> </jaxws:outInterceptors> 
+		</jaxws:endpoint> -->
+
+	<!--配置方案二使用JAX-WS标准配置jaxws:endpoint，发布服务 -->
+	<!--id:springbean标识，serviceClass：服务实现接口，address：服务发布路径 -->
+
+	<!--CXF提供的内置拦截器 -->
+	<!--<beanid="inLoggingInterceptor"class="org.apache.cxf.interceptor.LoggingInInterceptor"/> 
+		<beanid="outLoggingInterceptor"class="org.apache.cxf.interceptor.LoggingOutInterceptor"/> -->
+
+
+	<!-- <jaxrs:server id="rest" address="/rest">
+		<jaxrs:serviceBeans>
+			<refbean="bookserviceclass"/>
+			<ref bean="helloworld" />
+		</jaxrs:serviceBeans> -->
+
+		<!--可选配置入口拦截器 -->
+		<!--<jaxrs:inInterceptors> <refbean="inLoggingInterceptor"/> </jaxrs:inInterceptors> -->
+		<!--可选配置出口拦截器 -->
+		<!--<jaxrs:outInterceptors> <refbean="outLoggingInterceptor"/> </jaxrs:outInterceptors> -->
+
+		<!-- <jaxrs:providers>
+			<ref bean="jsonProvider" />
+			<ref bean="xmlProvider" />
+		</jaxrs:providers>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json"/>
+			<entry key="xml" value="application/xml"/>
+		</jaxrs:extensionMappings>
+	</jaxrs:server> -->
+
+
+	<bean id="xmlProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider"></bean>
+	<!-- <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider"> -->
+	<bean id="jsonProvider" class="lin.core.cxf.LinJSONProvider">
+		<!-- <property name="dropRootElement" value="true" /> <property name="dropCollectionWrapperElement" 
+			value="true" /> <property name="supportUnwrapped" value="true" /> <property 
+			name="serializeAsArray" value="true" /> <property name="attributesToElements" 
+			value="true"/> -->
+		<!-- <property name="serializeAsArray" value="true" /> -->
+		<!-- <property name="arrayKeys" ref="jsonKeys" /> -->
+		<!-- <property name="produceMediaTypes" ref="jsonTypes" /> <property name="consumeMediaTypes" 
+			ref="jsonTypes" /> -->
+		<!-- <property name="ignoreNamespaces" value="true" /> -->
+		<property name="dropRootElement" value="true" />
+		<!-- <property name="dropCollectionWrapperElement" value="true" /> <property 
+			name="ignoreMixedContent" value="true" /> <property name="supportUnwrapped" 
+			value="true" /> <property name="attributesToElements" value="true" /> -->
+	</bean>
+</beans>

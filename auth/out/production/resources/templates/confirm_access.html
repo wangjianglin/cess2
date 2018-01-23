@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+>
+<head>
+	<title>login</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		html, body {
+			height: 100%;
+			overflow-x: hidden;
+			background-color: #FFFFFF !important;
+			/* height: 100%; */
+			color: #000000;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>CESS</h1>
+
+
+		<!--AbstractAuthenticationProcessingFilter.SPRING_SECURITY_LAST_EXCEPTION_KEY-->
+		<!--&& !(session-->
+		<!--.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') is UnapprovedClientAuthenticationException)-->
+		<div class="error" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION}">
+			<h2>Woops!</h2>
+
+			<p>
+				Access could not be granted. ${session.SPRING_SECURITY_LAST_EXCEPTION.message}
+			</p>
+		</div>
+
+
+
+			<h2>Please Confirm</h2>
+
+			<p>
+				You hereby authorize "
+
+				<p th:text="${client.clientId}"/>
+				" to access your protected resources.
+			</p>
+
+			<form id="confirmationForm" name="confirmationForm"
+				action="/oauth/authorize" method="post">
+				<input name="user_oauth_approval" value="true" type="hidden" />
+				<ul class="list-unstyled">
+
+						<li th:each="scope : ${scopes}">
+							<div class="form-group">
+								{{scope.key}}: <input type="radio" th:name="$scope.key"
+									value="true" ${approved}>Approve</input> <input type="radio"
+									th:name="$scope.key" value="false" >Deny</input>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+				<button class="btn btn-primary" type="submit">Submit</button>
+			</form>
+
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+    "id": "ExtBox1-ext-gen11124",
+    "type": "store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": false,
+        "storeId": "MyStore1",
+        "model": "MonData",
+        "data": "[\n{}\n]",
+        "designer|userClassName": "MyChartStore",
+        "designer|userAlias": "MyChartStore"
+    },
+    "customConfigs": [],
+    "designerId": "d8d2b5b9-2b02-42f0-99d8-71dbbef7cd18",
+    "$viewOrder": 2,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen26106",
+            "type": "memoryproxy",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyMemoryProxy1"
+            },
+            "customConfigs": [],
+            "expanded": true
+        }
+    ]
+}

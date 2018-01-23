@@ -1,0 +1,105 @@
+//group 'com.fcbb'
+//version '1.0-SNAPSHOT'
+//
+//buildscript {
+//    ext {
+//        springBootVersion = '2.0.0.M7'
+//    }
+//    repositories {
+//        maven { url "http://maven.feicuibaba.com/content/groups/java/" }
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//    }
+//}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+repositories {
+    maven {
+        url "http://maven.feicuibaba.com/content/groups/java/"
+    }
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
+
+//sourceCompatibility = 1.9
+//targetCompatibility = 1.9
+
+repositories {
+    maven { url "http://maven.feicuibaba.com/content/groups/java/" }
+    mavenCentral()
+}
+
+
+ext {
+    springCloudVersion = 'Finchley.M5'
+}
+
+//compileJava {
+//
+//    doFirst {
+//        options.compilerArgs = [
+//                '--module-path', classpath.asPath,
+//                '--add-modules', 'java.xml.bind',
+//        ]
+//    }
+//}
+//
+//bootRun {
+//    jvmArgs = [
+//            '--add-modules', 'java.xml.bind',
+//    ]
+//}
+
+dependencies {
+
+    //compile "io.cess:core:0.1.0.2"
+
+//    <dependency>
+//    <groupId>org.springframework.cloud</groupId>
+//			<artifactId>spring-cloud-starter-oauth2</artifactId>
+//    </dependency>
+//		<dependency>
+//			<groupId>org.springframework.boot</groupId>
+//    <artifactId>spring-boot-devtools</artifactId>
+//		</dependency>
+//    <dependency>
+//    <groupId>org.springframework.boot</groupId>
+//			<artifactId>spring-boot-starter-security</artifactId>
+//    </dependency>
+
+    compile project(":cloud")
+    compile project(":core")
+
+    compile "mysql:mysql-connector-java:6.0.6"
+
+    compile('org.springframework.security.oauth:spring-security-oauth2:2.2.1.RELEASE')
+    compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+    compile('org.springframework.security:spring-security-jwt:1.0.3.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+//    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+//    compile('org.springframework.cloud:spring-boot-starter-test')
+    compile('com.netflix.hystrix:hystrix-core:1.5.9')
+    compile('com.netflix.hystrix:hystrix-metrics-event-stream:1.5.9')
+    compile('com.netflix.hystrix:hystrix-javanica:1.5.9')
+    compile('com.netflix.hystrix:hystrix-servo-metrics-publisher:1.5.9')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+

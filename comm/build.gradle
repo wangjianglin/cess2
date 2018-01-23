@@ -1,0 +1,15 @@
+//uploadArchives {
+//	repositories {
+//		mavenDeployer {
+//			pom.artifactId = 'lin-client'
+//		}
+//	}
+//}
+
+
+dependencies {
+	compile 'org.apache.httpcomponents:httpclient:4.5'
+	compile 'org.apache.httpcomponents:httpmime:4.5'
+	//compile 'lin:lin-util:0.0.1-SNAPSHOT'
+	compile project(':util')
+}

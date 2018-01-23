@@ -1,0 +1,125 @@
+//buildscript {
+//	ext {
+//		springBootVersion = '2.0.0.M4'
+//	}
+//	repositories {
+//		mavenCentral()
+//	}
+//	dependencies {
+//		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//	}
+//}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+compileJava {
+
+//	doFirst {
+//		options.compilerArgs = [
+//				'--module-path', classpath.asPath,
+//				'--add-modules', 'java.xml.bind',
+//				'--add-modules', 'java.xml.ws',
+//		]
+//	}
+}
+
+
+bootRun {
+	//inputs.property("moduleName", moduleName)
+//	doFirst {
+//		jvmArgs = [
+//				'--add-modules', 'java.xml.bind',
+//				'--add-modules', 'java.xml.ws',
+//		]
+//	}
+}
+
+//uploadArchives.dependsOn project.bootJar
+
+uploadArchives {
+	doFirst{
+		bootJar.execute();
+	}
+}
+
+//webAppDirName = 'webapp'
+
+task sourcesWar(type: Jar, dependsOn: classes) {
+	classifier 'sources'
+	from sourceSets.main.allSource
+	from 'src/main/webapp'
+}
+
+artifacts {
+	archives sourcesWar
+}
+
+//dependencies {
+//
+////	<dependency>
+////	<groupId>org.apache.tomcat.embed</groupId>
+////			<artifactId>tomcat-embed-jasper</artifactId>
+////	<scope>provided</scope>
+////		</dependency>
+////	<dependency>
+////	<groupId>javax.servlet</groupId>
+////			<artifactId>jstl</artifactId>
+////	compile "org.apache.tomcat.embed:tomcat-embed-jasper"
+////	compile "javax.servlet:jstl"
+//	compile "org.apache.commons:commons-configuration2:2.1"
+//	compile project(':util')
+//	compile project(':core')
+//	compile project(':web')
+//
+//}
+
+
+//tomcat 插件的配置
+//tomcat {
+//	httpPort = 8090
+//	stopPort = 8091
+//	//httpsPort = 8091
+//	//enableSSL = true
+//}
+// 
+//tomcatRun{
+//	contextPath= 'server'
+//	URIEncoding= 'UTF-8'
+//	reloadable = 'true'
+// 
+//}
+
+ 
+//jetty 插件的的配置
+//apply plugin: 'jetty'
+//httpPort = 8080
+//stopPort  = 8091
+//stopKey = "kelljetty"
+////GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=9999,server=y,suspend=n"
+//
+//jettyRun{
+//	//jvmArgs '-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005'
+//	contextPath = ''
+//	reload = 'automatic'
+//	scanIntervalSeconds = 10
+//}
+
+//tomcat 插件的配置
+
+
+
+dependencies{
+	compile "mysql:mysql-connector-java:5.1.33"
+	compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+	compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+//	compile "org.apache.cxf:cxf-spring-boot-starter-jaxws:${cxfVersion}"
+//	compile "org.apache.cxf:cxf-spring-boot-starter-jaxrs:${cxfVersion}"
+	compile project(':core')
+	compile project(':web')
+
+	runtime project(':core')
+	runtime project(':web')
+	runtime "com.h2database:h2:1.4.192"
+//	runtime "mysql:mysql-connector-java"
+}

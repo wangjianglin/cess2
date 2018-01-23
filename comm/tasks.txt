@@ -1,0 +1,61 @@
+
+暂停维护,实际用处不大
+
+HTTP
+1、加入所有http请求的基本功能 测试用例   需要加密 与 不加密两种数据通信方式
+2、http请求支持 gzip 数据压缩
+3、HttpPackage包中加入http头信息
+4、经apaceh反向代理时，第三个请求卡死
+
+web socket
+
+
+1、TCP通信添加注解功能
+
+2、TCP  json 数据包
+
+
+
+
+
+
+
+
+
+
+
+Http包的URI改为注解方式，有利于系统处理，但不利于程序的健壮性。在基类的构造函数中加入注解的检测，如果没有抛运行时异常
+
+TCP通信包也一样
+
+HTTP通信增加方法的支持
+
+TCP 通信
+TCP传文件支持
+
+
+1、CommunicateListener只能单线程工作,
+
+CommunicateListener中的响应支持异步处理
+
+2、多Session时，测试Coummunicate类的InitServerImpl方法中下面这段代码：
+
+lock (serverSessions)
+{
+    serverSessions.Remove(session);
+    if (sessionListener != null)
+    {
+        sessionListener.Destory(session);
+    }
+}
+
+
+
+2、JSON编码
+
+3、tcp通信中的注解处理
+
+
+
+
+//TCP 头中回一个字节表示数据的上下行

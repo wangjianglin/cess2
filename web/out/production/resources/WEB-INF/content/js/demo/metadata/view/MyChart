@@ -1,0 +1,172 @@
+{
+    "id": "ExtBox1-ext-gen36163",
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "itemId": "trendChart",
+        "layout": "border",
+        "title": "图表",
+        "designer|userClassName": "MyChart",
+        "designer|userAlias": "MyChart"
+    },
+    "customConfigs": [],
+    "designerId": "0eaed473-cca0-45de-bb68-059f70670f49",
+    "$viewOrder": 3,
+    "expanded": false,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen36179",
+            "type": "toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 30,
+                "designer|userClassName": "MyToolbar",
+                "layout|region": "north",
+                "dock": "top"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen36191",
+                    "type": "label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "text": "最近",
+                        "designer|userClassName": "MyLabel",
+                        "layout|flex": null
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen38144",
+                    "type": "combobox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "comboLatest",
+                        "value": "1",
+                        "fieldLabel": null,
+                        "matchFieldWidth": false,
+                        "displayField": "name",
+                        "queryMode": "local",
+                        "store": "LatestMonths",
+                        "valueField": "value",
+                        "designer|userClassName": "MyComboBox1",
+                        "layout|flex": null
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen41206",
+            "type": "chart",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoRender": false,
+                "itemId": "myChart",
+                "animate": "true",
+                "insetPadding": 20,
+                "store": "MyChartStore",
+                "designer|userClassName": "LineChart",
+                "layout|region": "center"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-line-chart",
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen41226",
+                    "type": "numericaxis",
+                    "reference": {
+                        "name": "axes",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fields": "['data1','data2','data3']",
+                        "grid": "{\n                    odd: {\n                        opacity: 1,\n                        fill: '#ddd',\n                        stroke: '#bbb',\n                        'stroke-width': 0.5\n                    }",
+                        "position": "left",
+                        "title": "质量",
+                        "designer|userClassName": "MyNumericAxis"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen41229",
+                    "type": "lineseries",
+                    "reference": {
+                        "name": "series",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "highlight": "{\n                    size: 7,\n                    radius: 7\n                }",
+                        "title": "质量",
+                        "xField": "name",
+                        "yField": "['data1']",
+                        "smooth": 3,
+                        "designer|userClassName": "MyLineSeries"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen56409",
+                    "type": "chartlegend",
+                    "reference": {
+                        "name": "legend",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "position": "right",
+                        "designer|userClassName": "MyLegend"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen57349",
+                    "type": "categoryaxis",
+                    "reference": {
+                        "name": "axes",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fields": "['name']",
+                        "position": "bottom",
+                        "title": "月份",
+                        "designer|userClassName": "MyCategoryAxis"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        }
+    ]
+}

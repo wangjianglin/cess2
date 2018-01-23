@@ -1,0 +1,1 @@
+实现与web页面展现有关的内容，html，jsp，不涉及servlet、sping、cxf、struts等

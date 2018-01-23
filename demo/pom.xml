@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>lin.demo</artifactId>
+  <packaging>war</packaging>
+  <build>
+    <plugins>
+    
+     <plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.1</version>
+				<configuration>
+					<altDeploymentRepository>internal.repo::default::file://${project.parent.build.directory}/mvn-repo</altDeploymentRepository>
+				</configuration>
+			</plugin>
+			
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      
+<!--       <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.1</version>
+    <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+    </configuration>
+</plugin>
+     -->
+     <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-eclipse-plugin</artifactId>
+    <version>2.9</version>
+    <configuration>
+      <!-- <projectNameTemplate>[artifactId]-[version]</projectNameTemplate> -->
+      <projectNameTemplate>demo</projectNameTemplate>
+      <!-- <wtpmanifest>true</wtpmanifest>
+      <wtpapplicationxml>true</wtpapplicationxml>
+      <wtpversion>2.0</wtpversion> -->
+     <!--  <manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest> -->
+    </configuration>
+  </plugin>
+    <plugin>  
+            <groupId>org.mortbay.jetty</groupId>  
+            <artifactId>jetty-maven-plugin</artifactId>  
+            <version>8.1.16.v20140903</version>  
+            <configuration>  
+                <stopKey>stop</stopKey>  
+                <stopPort>5599</stopPort>  
+                <webAppConfig>  
+                    <contextPath>/</contextPath>  
+                    <!-- <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>  --> 
+                </webAppConfig>  
+                <scanIntervalSeconds>0</scanIntervalSeconds>  
+                <connectors>  
+                    <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">  
+                        <port>8080</port>  
+                        <maxIdleTime>60000</maxIdleTime>  
+                    </connector>  
+                </connectors>  
+            </configuration>  
+        </plugin>  
+    </plugins>
+  </build>
+  <parent>
+  	<groupId>lin</groupId>
+  	<artifactId>lin</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <dependencies>
+   	<dependency>
+  		<groupId>lin</groupId>
+  		<artifactId>lin.util</artifactId>
+  		<version>${project.parent.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>lin</groupId>
+  		<artifactId>lin.core</artifactId>
+  		<version>${project.parent.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>lin</groupId>
+  		<artifactId>lin.web</artifactId>
+  		<version>${project.parent.version}</version>
+  	</dependency>
+  	<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.33</version>
+			</dependency>
+			
+		
+  </dependencies>
+</project>

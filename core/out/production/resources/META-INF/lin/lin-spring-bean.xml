@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="#{T(java.lang.Integer).MAX_VALUE}"></property>
+ <property name="locations">
+            <list>
+                <value>classpath*:META-INF/lin/lin-default.properties</value>
+                <value>classpath*:META-INF/lin/lin.properties</value>
+                </list>
+ </property>
+</bean>
+	<context:annotation-config/>	
+    
+    <context:component-scan base-package="lin">
+	   <!--  <context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="javax.inject.Named" />
+		<context:exclude-filter type="annotation"
+			expression="javax.inject.Inject" /> -->
+			<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+    <!-- JPA相关配置 -->
+    
+   <!-- Annotation事务 -->  
+<tx:annotation-driven transaction-manager="transactionManager" />
+<!-- 事务支持 -->  
+<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  
+<property name="entityManagerFactory" ref="emf" />  
+</bean>  
+
+<!-- <bean id="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="timeout" value="300" />
+		<property name="transactionManager" ref="transactionManager" />
+	</bean> -->
+<!--     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="persistenceUnitName" value="jpa2"/> 
+         <property name="packagesToScan">
+            <list>
+                <value>lin.*</value>
+            </list>
+        </property>  
+        <property name="dataSource" ref="dataSource"/>     
+    </bean> -->
+
+    <!--<bean id="emf" class="lin.core.spring.LinEntityManagerFactoryBean">-->
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="default"/>
+        <property name="packagesToScan">
+            <list>
+                <value>lin.*</value>
+            </list>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">${lin.database.hibernate.dialect}</prop>
+
+   		<prop key="hibernate.connection.driver_class">${lin.database.hibernate.connection.driver_class}</prop>
+   			<prop key="hibernate.connection.username">${lin.database.hibernate.connection.username}</prop>
+   			<prop key="hibernate.connection.password">${lin.database.hibernate.connection.password}</prop>
+   			
+   			<prop key="hibernate.connection.url">${lin.database.hibernate.connection.url}</prop>
+   			    
+   		<prop key="hibernate.hbm2ddl.auto">${lin.database.hibernate.hbm2ddl.auto}</prop>
+   		<prop key="hibernate.show_sql">${lin.database.hibernate.show_sql}</prop>
+   		<prop key="hibernate.format_sql">${lin.database.hibernate.format_sql}</prop>
+   		
+   		
+   		 <prop key="hibernate.connection.provider_class">${lin.database.hibernate.connection.provider_class}</prop>
+<!--       最小连接数 -->
+      <prop key="c3p0.min_size">${lin.database.c3p0.min_size}</prop>
+  <!--     最大连接数  -->
+      <prop key="c3p0.max_size">${lin.database.c3p0.max_size}</prop>
+      <!-- 最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0   -->
+      <prop key="c3p0.maxIdleTime">${lin.database.c3p0.maxIdleTime}</prop>
+     <!--  获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒  -->
+      <prop key="c3p0.timeout">${lin.database.c3p0.timeout}</prop>
+      <!-- 最大的PreparedStatement的数量  -->
+      <prop key="c3p0.max_statements">${lin.database.c3p0.max_statements}</prop>
+    <!--   每隔120秒检查连接池里的空闲连接 ，单位是秒  -->
+      <prop key="c3p0.idle_test_period">${lin.database.c3p0.idle_test_period}</prop>
+     <!--  当连接池里面的连接用完的时候，C3P0一下获取的新的连接数  -->
+      <prop key="c3p0.acquire_increment">${lin.database.c3p0.acquire_increment}</prop>
+     <!--  是否每次都验证连接是否可用  -->
+      <prop key="c3p0.validate">${lin.database.c3p0.validate}</prop>
+
+
+      <prop key="hibernate.c3p0.testConnectionOnCheckout">${lin.database.hibernate.c3p0.testConnectionOnCheckout}</prop>
+            </props>
+        </property>
+        <!-- <property name="dataSource" ref="dataSource"/> -->
+       <!--  <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>  --> 
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="${lin.database.type}"/>
+                </bean>
+        </property>      
+    </bean>
+   <!--  <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> -->
+        <!-- <property name="database" value="MYSQL"/>
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/> -->
+        <!-- <property name="database" value="${database.type}"/>
+        <property name="showSql" value="${database.show_sql}"/>
+        <property name="generateDdl" value="${database.generate_ddl}"/>
+        <property name="databasePlatform" value="${database.dialect}"/> -->
+    <!-- </bean> -->
+    
+   <!--  <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="com.mysql.jdbc.Driver" />
+		<property name="driverUrl" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="root" />
+		<property name="password" value="1" />
+		<property name="prototypeCount" value="5" />
+		<property name="maximumConnectionCount" value="${maximumConnectionCount}" />
+		<property name="minimumConnectionCount" value="${minimumConnectionCount}" />
+		<property name="houseKeepingTestSql" value="${db.jdbc.testsql}"/>
+		<property name="testBeforeUse" value="true"/>
+        <property name="simultaneousBuildThrottle" value="20"/>
+        <property name="maximumActiveTime" value="3600000"/>
+		<property name="alias" value="default"/>
+	</bean> -->
+	
+    <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${database.driver}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+    </bean> -->
+	
+	
+	<!-- <import resource="classpath*:META-INF/lin/lin-cxf-bean.xml"/> -->
+	
+	
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="returnValueHandlers">
+			<list>
+			</list>
+		</property>
+	</bean> -->
+	<!-- <bean class="lin.core.spring.LinRequestMappingHandlerAdapter">
+	
+	</bean> -->
+    </beans>

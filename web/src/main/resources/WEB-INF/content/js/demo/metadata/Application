@@ -1,0 +1,97 @@
+{
+    "id": "ExtBox1-ext-gen2438",
+    "type": "application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "MonModel",
+            "MonData"
+        ],
+        "stores": null,
+        "views": [
+            "MyViewport"
+        ],
+        "autoCreateViewport": true,
+        "name": "MyApp",
+        "controllers": [
+            "AppLaunchCtrl",
+            "FormCtrl",
+            "QueryCtrl",
+            "ChartCtrl"
+        ]
+    },
+    "customConfigs": [],
+    "designerId": "application",
+    "$viewOrder": 0,
+    "iconCls": "icon-application",
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen25337",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "findTab",
+                "designer|params": [
+                    "tabPanel",
+                    " record"
+                ],
+                "implHandler": "var ret,\r\nactiveTab = tabPanel.getActiveTab();\r\nif (activeTab && activeTab.record === record) {\r\n    return activeTab;\r\n}\r\ntabPanel.items.each(function(t, idx) {\r\n    if (t && t.record === record) {\r\n        ret = t;\r\n        return false;\r\n    }\r\n});\r\nreturn ret;",
+                "designer|userClassName": "findTab"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen25787",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "activateTab",
+                "designer|params": [
+                    "tabPanel",
+                    "targetTab"
+                ],
+                "implHandler": "if (targetTab) {\r\n    tabPanel.setActiveTab(targetTab);\r\n    return true;\r\n}\r\nreturn false;",
+                "designer|userClassName": "activateTab"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen26108",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "widget",
+                "designer|params": [
+                    "tabPanel",
+                    "controllerName",
+                    "widgetName",
+                    "record",
+                    "cfg"
+                ],
+                "implHandler": "var findRes = this.findTab(tabPanel, record);\r\nif (findRes) {\r\n    this.activateTab(tabPanel, findRes);   \r\n} else {\r\n    var ctrl = this.getController(controllerName),\r\n    tab = Ext.widget(widgetName, {record: record, closable: true});\r\n    if (cfg) {\r\n        Ext.apply(tab, cfg);\r\n    }\r\n    tabPanel.setActiveTab(tabPanel.add(tab));\r\n    ctrl.init();\r\n}",
+                "designer|userClassName": "widget"
+            },
+            "customConfigs": [],
+            "expanded": true
+        }
+    ]
+}

@@ -1,0 +1,222 @@
+{
+    "id": "ExtBox1-ext-gen3204",
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "itemId": "sampleTest",
+        "layout": "border",
+        "title": "表单",
+        "designer|userClassName": "MyForm",
+        "designer|userAlias": "MyForm"
+    },
+    "customConfigs": [],
+    "designerId": "9be5bd86-f922-40f9-998b-a0300d716546",
+    "$viewOrder": 1,
+    "expanded": false,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen14459",
+            "type": "form",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "title": null,
+                "designer|userClassName": "MyForm",
+                "layout|region": "center"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen5079",
+                    "type": "fieldset",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 163,
+                        "title": "样品基本信息",
+                        "designer|userClassName": "MyFieldSet1"
+                    },
+                    "customConfigs": [],
+                    "expanded": false,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen18540",
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "样品来源",
+                                "designer|userClassName": "MyTextField1",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen16725",
+                            "type": "triggerfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "样品类别",
+                                "designer|userClassName": "MyTriggerField",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen18887",
+                            "type": "numberfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "样品质量（克）",
+                                "designer|userClassName": "MyNumberField2",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen20442",
+                            "type": "datefield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "检查日期",
+                                "designer|userClassName": "MyDateField",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen20659",
+                            "type": "timefield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "检查时间",
+                                "designer|userClassName": "MyTimeField",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen3898",
+                    "type": "fieldset",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 83,
+                        "title": "测量指标",
+                        "designer|userClassName": "MyFieldSet"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen18184",
+                            "type": "numberfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "测量室温(摄氏度)",
+                                "designer|userClassName": "MyNumberField1",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen15998",
+                            "type": "numberfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "含水率",
+                                "designer|userClassName": "MyNumberField",
+                                "layout|anchor": "100%"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen11243",
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "检查结果",
+                        "designer|userClassName": "MyTextField1",
+                        "layout|anchor": "100%"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen11857",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "btnSave",
+                        "width": 91,
+                        "text": "保存结果",
+                        "designer|userClassName": "MyButton2"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        }
+    ]
+}

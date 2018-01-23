@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="svn">
+<!-- ================================= 
+          target: name              
+         ================================= -->
+    <!--target name="native2ascii" description="description">
+		<!- -delete file="build/classes/META-INF/ad.exception.code.properties"></delete- ->
+        <native2ascii dest="build/classes/META-INF" encoding="utf-8" src="src/META-INF/">
+        	
+        </native2ascii>
+    </target-->
+    
+    <target name="svn" description="svn version">
+        <exec executable="cmd" failonerror="true">
+			<arg line="/c  ${basedir}/GenerateVersionInfo.bat"/>
+        </exec>
+    </target>
+
+</project>

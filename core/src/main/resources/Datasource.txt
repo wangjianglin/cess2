@@ -1,0 +1,137 @@
+//数据源
+
+通过 boot jpa 自动配置
+
+spring.datasource.url=jdbc:mysql://localhost:3306/test
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driverClassName = com.mysql.jdbc.Driver
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+spring.jpa.jpaProperties.hibernate.hbm2ddl.auto=update
+spring.jpa.jpaProperties.hibernate.show_sql=true
+spring.jpa.jpaProperties.hibernate.format_sql=true
+
+第二种：
+
+lin.primary.datasource.driverClassName=com.mysql.jdbc.Driver
+lin.primary.datasource.url=jdbc:mysql://localhost:3306/test2
+lin.primary.datasource.username=root
+lin.primary.datasource.password=
+lin.primary.jpa.persistenceUnitName = one
+
+@Configuration
+@EnableTransactionManagement
+//@EnableJpaRepositories(entityManagerFactoryRef="entityManagerFactoryPrimary",
+//        transactionManagerRef="transactionManagerPrimary",
+//        basePackages= { "lin" })//设置dao（repo）所在位置
+public class DataSourceConfig{
+
+    @Bean(name = "primaryDS") @Qualifier("primaryDS")
+    @ConfigurationProperties(prefix="lin.primary.datasource")
+    public DataSource primaryDataSource(){
+        DataSource dataSource = DataSourceBuilder.create().build();
+        return dataSource;
+    }
+
+    @Bean(name = "entityManagerPrimary")
+    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
+        return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
+    }
+
+
+
+    @Bean(name = "entityManagerFactoryPrimary")
+    @ConfigurationProperties(prefix="lin.primary.jpa")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary (EntityManagerFactoryBuilder builder) {
+        DataSource dataSource = primaryDataSource();
+        return builder
+                .dataSource(dataSource)
+                .properties(getVendorProperties())
+                .packages("lin") //设置实体类所在位置
+//                .persistenceUnit("one")
+                .build();
+    }
+
+    private Map<String, String> getVendorProperties() {
+        Map<String, String> p = new HashMap<>();
+        p.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
+        p.put("hibernate.hbm2ddl.auto","update");
+        p.put("hibernate.show_sql","true");
+        p.put("hibernate.format_sql","true");
+        return p;
+    }
+
+    @Bean(name = "transactionManagerPrimary")
+    PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
+    }
+}
+
+第三种方式：
+
+lin.database.unitName = default
+lin.database.hibernate.connection.driver_class=org.h2.Driver
+lin.database.hibernate.connection.url=jdbc:h2:mem:testdb;AUTO_RECONNECT=TRUE
+lin.database.hibernate.connection.username=sa
+lin.database.hibernate.connection.password=
+lin.database.hibernate.dialect=org.hibernate.dialect.H2Dialect
+lin.database.testsql=select 1
+lin.database.hibernate.hbm2ddl.auto=update
+lin.database.hibernate.show_sql=true
+lin.database.hibernate.format_sql=true
+
+lin.database.hibernate.connection.provider_class=org.hibernate.connection.C3P0ConnectionProvider
+lin.database.hibernate.c3p0.testConnectionOnCheckout=true
+lin.database.c3p0.min_size=5
+lin.database.c3p0.max_size=30
+lin.database.c3p0.maxIdleTime=60
+lin.database.c3p0.timeout=1800
+lin.database.c3p0.max_statements=50
+lin.database.c3p0.idle_test_period=120
+lin.database.c3p0.acquire_increment=1
+lin.database.c3p0.validate=false
+
+
+@Configuration
+public class DemoConfig extends JpaConfig {
+
+
+    @Bean
+    public Jsr181HandlerMapping webService(){
+        Jsr181HandlerMapping handler = new Jsr181HandlerMapping();
+        handler.setUrlPrefix("/services2/");
+        return  handler;
+    }
+    @Bean
+    public RestHandlerMapping restServer(){
+        return new RestHandlerMapping();
+    }
+
+
+    @Bean
+    public JpaTransactionManager jpaTransactionManager() throws Exception {
+        JpaTransactionManager jta = new JpaTransactionManager();
+        jta.setEntityManagerFactory(emf().getObject());
+        return jta;
+    }
+
+    @Bean
+    public TransactionTemplate transactionTemplate() throws Exception {
+        TransactionTemplate template = new TransactionTemplate();
+        template.setTimeout(300);
+        template.setTransactionManager(jpaTransactionManager());
+        return template;
+    }
+
+    @Bean()
+    public EntityManager entityManager() throws Exception {
+        return emf().getObject().createEntityManager();
+    }
+
+    @Bean(name = "emf")
+    public FactoryBean<EntityManagerFactory> emf(){
+        return this.entityManagerFactory();
+    }
+}
+

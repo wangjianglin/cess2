@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="uk-height-1-1">
+<head>
+    <meta charset="UTF-8"/>
+    <title>OAuth2 SSO Demo 2</title>
+    <style>
+        html {
+            font: 400 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background: #fff;
+            color: #444;
+            background-image: -webkit-radial-gradient(100% 100%, center, #fff, #fff);
+            background-image: radial-gradient(100% 100% at center, #fff, #fff)
+        }
+
+        body {
+            margin: 0
+        }
+
+        abbr[title] {
+            border-bottom: 1px dotted
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0 0 15px 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            color: #444;
+            text-transform: none
+        }
+
+        * + h1, * + h2, * + h3, * + h4, * + h5, * + h6 {
+            margin-top: 25px
+        }
+
+        .uk-width-1-1 {
+            width: 100%
+        }
+
+        .uk-form input, .uk-form select, .uk-form textarea {
+            box-sizing: border-box;
+            margin: 0;
+            border-radius: 0;
+            font: inherit;
+            color: inherit
+        }
+
+        .uk-form select {
+            text-transform: none
+        }
+
+        .uk-form optgroup {
+            font: inherit;
+            font-weight: 700
+        }
+
+        .uk-form input::-moz-focus-inner {
+            border: 0;
+            padding: 0
+        }
+
+        .uk-form input[type=checkbox], .uk-form input[type=radio] {
+            padding: 0
+        }
+
+        .uk-form input[type=checkbox]:not(:disabled), .uk-form input[type=radio]:not(:disabled) {
+            cursor: pointer
+        }
+
+        .uk-form input:not([type]), .uk-form input[type=text], .uk-form input[type=password], .uk-form input[type=email], .uk-form input[type=url], .uk-form input[type=search], .uk-form input[type=tel], .uk-form input[type=number], .uk-form input[type=datetime], .uk-form textarea {
+            -webkit-appearance: none
+        }
+
+        .uk-form input[type=search]::-webkit-search-cancel-button, .uk-form input[type=search]::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        .uk-form input[type=number]::-webkit-inner-spin-button, .uk-form input[type=number]::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        .uk-form fieldset {
+            border: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .uk-form textarea {
+            overflow: auto;
+            vertical-align: top
+        }
+
+        .uk-form ::-moz-placeholder {
+            opacity: 1
+        }
+
+        .uk-form :invalid {
+            box-shadow: none
+        }
+
+        .uk-form input:not([type=radio]):not([type=checkbox]), .uk-form select {
+            vertical-align: middle
+        }
+
+        .uk-form > :last-child {
+            margin-bottom: 0
+        }
+
+        .uk-form input:not([type]), .uk-form input[type=text], .uk-form input[type=password], .uk-form input[type=email], .uk-form input[type=url], .uk-form input[type=search], .uk-form input[type=tel], .uk-form input[type=number], .uk-form input[type=datetime], .uk-form input[type=datetime-local], .uk-form input[type=date], .uk-form input[type=month], .uk-form input[type=time], .uk-form input[type=week], .uk-form input[type=color], .uk-form select, .uk-form textarea {
+            height: 30px;
+            max-width: 100%;
+            padding: 4px 6px;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #444;
+            -webkit-transition: all .2s linear;
+            -webkit-transition-property: border, background, color, box-shadow, padding;
+            transition: all .2s linear;
+            transition-property: border, background, color, box-shadow, padding;
+            border-radius: 4px
+        }
+
+        .uk-form input:not([type]):focus, .uk-form input[type=text]:focus, .uk-form input[type=password]:focus, .uk-form input[type=email]:focus, .uk-form input[type=url]:focus, .uk-form input[type=search]:focus, .uk-form input[type=tel]:focus, .uk-form input[type=number]:focus, .uk-form input[type=datetime]:focus, .uk-form input[type=datetime-local]:focus, .uk-form input[type=date]:focus, .uk-form input[type=month]:focus, .uk-form input[type=time]:focus, .uk-form input[type=week]:focus, .uk-form input[type=color]:focus, .uk-form select:focus, .uk-form textarea:focus {
+            border-color: #99baca;
+            outline: 0;
+            background: #f5fbfe;
+            color: #444
+        }
+
+        .uk-form input:not([type]):disabled, .uk-form input[type=text]:disabled, .uk-form input[type=password]:disabled, .uk-form input[type=email]:disabled, .uk-form input[type=url]:disabled, .uk-form input[type=search]:disabled, .uk-form input[type=tel]:disabled, .uk-form input[type=number]:disabled, .uk-form input[type=datetime]:disabled, .uk-form input[type=datetime-local]:disabled, .uk-form input[type=date]:disabled, .uk-form input[type=month]:disabled, .uk-form input[type=time]:disabled, .uk-form input[type=week]:disabled, .uk-form input[type=color]:disabled, .uk-form select:disabled, .uk-form textarea:disabled {
+            border-color: #ddd;
+            background-color: #fafafa;
+            color: #999
+        }
+
+        .uk-form :-ms-input-placeholder {
+            color: #999 !important
+        }
+
+        .uk-form ::-moz-placeholder {
+            color: #999
+        }
+
+        .uk-form ::-webkit-input-placeholder {
+            color: #999
+        }
+
+        .uk-form :disabled:-ms-input-placeholder {
+            color: #999 !important
+        }
+
+        .uk-form :disabled::-moz-placeholder {
+            color: #999
+        }
+
+        .uk-form :disabled::-webkit-input-placeholder {
+            color: #999
+        }
+
+        input:not([type]).uk-form-large, input[type].uk-form-large, select.uk-form-large, textarea.uk-form-large {
+            height: 40px;
+            padding: 8px 6px;
+            font-size: 16px
+        }
+
+        .uk-form-row:after, .uk-form-row:before {
+            content: "";
+            display: table
+        }
+
+        .uk-form-row:after {
+            clear: both
+        }
+
+        .uk-form-row + .uk-form-row {
+            margin-top: 15px
+        }
+
+        .uk-button::-moz-focus-inner {
+            border: 0;
+            padding: 0
+        }
+
+        .uk-button {
+            -webkit-appearance: none;
+            margin: 0;
+            border: none;
+            overflow: visible;
+            font: inherit;
+            color: #444;
+            text-transform: none;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 0 12px;
+            background: #f7f7f7;
+            vertical-align: middle;
+            line-height: 28px;
+            min-height: 30px;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-bottom-color: rgba(0, 0, 0, .3);
+            background-origin: border-box;
+            background-image: -webkit-linear-gradient(top, #fff, #eee);
+            background-image: linear-gradient(to bottom, #fff, #eee);
+            border-radius: 4px;
+            text-shadow: 0 1px 0 #fff
+        }
+
+        .uk-button:not(:disabled) {
+            cursor: pointer
+        }
+
+        .uk-button:focus, .uk-button:hover {
+            background-color: #fafafa;
+            color: #444;
+            outline: 0;
+            text-decoration: none;
+            background-image: none
+        }
+
+        .uk-button.uk-active, .uk-button:active {
+            background-color: #f5f5f5;
+            color: #444;
+            border-color: rgba(0, 0, 0, .2);
+            border-top-color: rgba(0, 0, 0, .3);
+            background-image: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, .1)
+        }
+
+        .uk-button-primary {
+            background-color: #009dd8;
+            color: #fff;
+            background-image: -webkit-linear-gradient(top, #00b4f5, #008dc5);
+            background-image: linear-gradient(to bottom, #00b4f5, #008dc5);
+            border-color: rgba(0, 0, 0, .2);
+            border-bottom-color: rgba(0, 0, 0, .4);
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, .2)
+        }
+
+        .uk-button-primary:focus, .uk-button-primary:hover {
+            background-color: #00aff2;
+            color: #fff;
+            background-image: none
+        }
+
+        .uk-button-primary.uk-active, .uk-button-primary:active {
+            background-color: #008abf;
+            color: #fff;
+            background-image: none;
+            border-color: rgba(0, 0, 0, .2);
+            border-top-color: rgba(0, 0, 0, .4);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, .2)
+        }
+
+        .uk-button:disabled {
+            background-color: #fafafa;
+            color: #999;
+            border-color: rgba(0, 0, 0, .2);
+            background-image: none;
+            box-shadow: none;
+            text-shadow: 0 1px 0 #fff
+        }
+
+        .uk-button-large {
+            min-height: 40px;
+            padding: 0 15px;
+            line-height: 38px;
+            font-size: 16px;
+            border-radius: 5px
+        }
+
+        @media screen {
+            [data-uk-scrollspy*=uk-animation-]:not([data-uk-scrollspy*=target]) {
+                opacity: 0
+            }
+        }
+
+        .uk-modal-footer > :last-child, .uk-modal-header > :last-child {
+            margin-bottom: 0
+        }
+
+        .uk-text-success {
+            color: #659f13 !important
+        }
+
+        .uk-text-danger {
+            color: #d85030 !important
+        }
+
+        .uk-text-center {
+            text-align: center !important
+        }
+
+        .uk-vertical-align {
+            font-size: 0
+        }
+
+        .uk-vertical-align:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle
+        }
+
+        .uk-vertical-align-bottom, .uk-vertical-align-middle {
+            display: inline-block;
+            max-width: 100%;
+            font-size: 1rem
+        }
+
+        .uk-vertical-align-middle {
+            vertical-align: middle
+        }
+
+        .uk-height-1-1 {
+            height: 100%
+        }
+
+
+    </style>
+</head>
+
+<body class="uk-height-1-1">
+
+<div class="uk-vertical-align uk-text-center uk-height-1-1">
+    <div class="uk-vertical-align-middle" style="width: 250px;">
+        <h1>Login Form</h1>
+
+        <p class="uk-text-danger" th:if="${param.error}">
+            Login failed ...
+        </p>
+
+        <p class="uk-text-success" th:if="${param.logout}">
+            Logout succeeded.
+        </p>
+
+        <form class="uk-panel uk-panel-box uk-form" method="post" th:action="@{/oauth/login}">
+            <div class="uk-form-row">
+                <input class="uk-width-1-1 uk-form-large" type="text" placeholder="Username" name="username"
+                       value="admin"/>
+            </div>
+            <div class="uk-form-row">
+                <input class="uk-width-1-1 uk-form-large" type="password" placeholder="Password" name="password"
+                       value="admin"/>
+            </div>
+            <div class="uk-form-row">
+                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Login</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

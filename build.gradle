@@ -1,0 +1,181 @@
+
+//def springBootVersion = '2.0.0.M4'
+//def cxfVersion = '3.1.7'
+
+
+def prop=new Properties();
+if(new File("set.properties").exists()) {
+	prop.load(new File("set.properties").newReader("utf8"));
+}else if(new File("../set.properties").exists()){
+	prop.load(new File("../set.properties").newReader("utf8"));
+}
+
+
+
+allprojects {
+
+	apply plugin: 'maven'
+	apply plugin: 'idea'
+	group = 'io.cess'
+	version = prop.getProperty("version","0.0.0")
+
+//	configurations.all {
+//		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//	}
+
+	repositories {
+
+		maven {url prop.getProperty('maven.url')}
+		mavenCentral()
+		maven {
+			url 'https://repo.spring.io/libs-milestone'
+		}
+	}
+
+	ext {
+		springCloudVersion = 'Finchley.M5'
+	}
+
+}
+
+def dateStr = new java.text.SimpleDateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(new Date());
+
+subprojects {
+
+	buildscript {
+		ext {
+//        springBootVersion = '1.4.0.RELEASE'
+//			springBootVersion = '2.0.0.M4'
+		}
+		repositories {
+			mavenCentral()
+			maven { url "https://repo.spring.io/libs-snapshot" }
+			maven { url "https://repo.spring.io/snapshot" }
+			maven { url "https://repo.spring.io/milestone" }
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		}
+	}
+
+	apply plugin: 'java'
+	apply plugin: 'groovy'
+//	apply plugin: 'scala'
+
+    repositories {
+		maven {
+			url 'https://repo.spring.io/libs-milestone'
+		}
+       //mavenCentral()
+    }
+
+//	bootRun {
+//
+//		//需开启才能使用JSP热部署功能
+//		addResources = true
+//	}
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+   //groupId 'lin.test'
+   //artifactId 'project1-sample'
+   //version '1.1'
+	//version = '0.1'
+
+    jar {
+        manifest.attributes provider: ''
+    }
+	
+	dependencies {
+//		compile "org.scala-lang:scala-library:2.11.8"
+//		compile "org.scala-lang:scala-compiler:2.11.8"
+//		compile "org.scala-lang:scala-reflect:2.11.8"
+		testCompile 'junit:junit:4.8.2'
+	}
+
+//	compileJava {
+////    inputs.property("moduleName", moduleName)
+//		doFirst {
+////        options.compilerArgs = [
+////                '--module-path', classpath.asPath,
+////                '--add-modules', 'junit',
+////                '--add-reads', "$moduleName=junit",
+////                '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
+////        ]
+//			options.compilerArgs = [
+//					'--module-path', classpath.asPath,
+//					'--add-modules', 'java.xml.ws'
+//			]
+//			classpath = files()
+//		}
+//	}
+
+	uploadArchives {
+
+		doFirst {
+
+			//configuration = configurations.archives
+			repositories.mavenDeployer {
+				snapshotRepository(url: prop.getProperty('snapshots.repo')) {//仓库地址
+					authentication(userName: prop.getProperty('maven.username'),//用户名
+							password: prop.getProperty('maven.password'))//密码
+				}
+
+				repository(url: prop.getProperty('release.repo')) {//仓库地址
+					authentication(userName: prop.getProperty('maven.username'),//用户名
+							password: prop.getProperty('maven.password'))//密码
+				}
+
+				pom.project {
+					name project.name
+					packaging 'jar'
+					description project.description
+					url project.version.toString().endsWith("-SNAPSHOT") ? prop.getProperty('snapshots.repo'):prop.getProperty('release.repo')//仓库地址
+					groupId project.group
+					artifactId project.name //LibA
+					version project.version
+				}
+			}
+		}
+	}
+
+	uploadArchives.dependsOn jar
+
+	new File(project.buildDir.absolutePath + '/tmp/jarResources/META-INF').mkdirs();
+	new File(project.buildDir.absolutePath + '/tmp/jarResources/META-INF/MANIFEST.MF').createNewFile();
+
+	java.io.PrintWriter fo = new java.io.PrintWriter(new OutputStreamWriter(new FileOutputStream(project.buildDir.absolutePath + '/tmp/jarResources/META-INF/MANIFEST.MF',false)));
+
+	fo.print('Manifest-Version: ')
+	fo.println(version)
+
+	fo.println('Provider: lin')
+	fo.println('Date: ' + dateStr)
+	fo.println('\n');
+	fo.close();
+
+	task sourcesJar(type: Jar) {
+		from sourceSets.main.java.srcDirs
+		classifier = 'sources'
+	}
+
+//task javadoc(type: Javadoc) {
+//        source = android.sourceSets.main.java.srcDirs
+//        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+	artifacts {
+//    archives javadocJar
+		archives sourcesJar
+	}
+
+	dependencies{
+		compile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+	}
+}

@@ -1,0 +1,111 @@
+{
+    "id": "ExtBox1-ext-gen26956",
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "stores": [
+            "MyChartStore",
+            "LatestMonths"
+        ],
+        "designer|userClassName": "ChartCtrl"
+    },
+    "customConfigs": [],
+    "designerId": "3a29e1b6-1d0d-472a-9894-5d6aeb633065",
+    "$viewOrder": 3,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen5397",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onComboboxSelect",
+                "implHandler": "console.log('onComboboxSelect');\r\nthis.getMyChartStoreStore().load();\r\nreturn false;",
+                "name": "select",
+                "scope": "me",
+                "designer|targetType": "Ext.form.field.ComboBox",
+                "designer|controlQuery": "#comboLatest",
+                "designer|userClassName": "onComboboxSelect"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen7307",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "tabPanel",
+                "selector": "#tabPanel",
+                "designer|userClassName": "tabPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen19497",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "init",
+                "designer|params": [
+                    "application"
+                ],
+                "implHandler": "this.getMyChartStoreStore().on(\r\n        {\r\n            'load' : function(me, operation, eOpts) {\r\n                me.loadData(generateData(8));\r\n            }\r\n        }\r\n);\r\nthis.getLatestMon().setValue('1');\r\nthis.getMyChartStoreStore().load();",
+                "designer|userClassName": "init"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen21764",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "latestMon",
+                "selector": "#comboLatest",
+                "designer|userClassName": "latestMon"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen22567",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLaunch",
+                "implHandler": "",
+                "designer|userClassName": "onLaunch"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        }
+    ]
+}

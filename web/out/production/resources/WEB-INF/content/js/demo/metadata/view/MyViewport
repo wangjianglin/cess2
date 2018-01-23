@@ -1,0 +1,195 @@
+{
+    "id": "ExtBox1-ext-gen2513",
+    "type": "viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|initialView": true,
+        "layout": "border",
+        "designer|userClassName": "MyViewport"
+    },
+    "customConfigs": [],
+    "designerId": "1f91dced-06b7-41ef-b626-bd74c5b97ea8",
+    "$viewOrder": 0,
+    "expanded": false,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen2756",
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 72,
+                "padding": 0,
+                "layout": "hbox",
+                "bodyPadding": 0,
+                "title": null,
+                "designer|userClassName": "MyPanel",
+                "container|align": "stretch",
+                "container|padding": 0,
+                "layout|region": "north"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen59447",
+                    "type": "image",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 201,
+                        "width": 201,
+                        "src": "images/logo.png",
+                        "designer|userClassName": "MyImg",
+                        "dock": "left"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen60085",
+                    "type": "label",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 73,
+                        "html": "<h1>演示</h1>",
+                        "padding": "40 auto 20 30",
+                        "text": "",
+                        "designer|userClassName": "MyLabel3",
+                        "layout|flex": 1,
+                        "dock": "top",
+                        "weight": 10
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen3187",
+            "type": "tabpanel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "tabPanel",
+                "activeTab": 0,
+                "designer|userClassName": "MyTabPanel",
+                "layout|region": "center"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen5006",
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "navi",
+                "width": 163,
+                "bodyPadding": 20,
+                "title": "菜单",
+                "designer|userClassName": "MyPanel2",
+                "layout|region": "west",
+                "layout|split": true
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen5898",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 79,
+                        "itemId": "btnAdd",
+                        "margin": 5,
+                        "width": 97,
+                        "enableToggle": true,
+                        "iconAlign": "top",
+                        "iconCls": "add",
+                        "pressed": false,
+                        "scale": "large",
+                        "text": "表单",
+                        "toggleGroup": "menu",
+                        "designer|userClassName": "MyButton"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen6922",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 80,
+                        "itemId": "btnHistory",
+                        "margin": 5,
+                        "width": 96,
+                        "enableToggle": true,
+                        "iconAlign": "top",
+                        "iconCls": "historyQuery",
+                        "scale": "large",
+                        "text": "表格",
+                        "toggleGroup": "menu",
+                        "designer|userClassName": "MyButton1"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen14193",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 87,
+                        "itemId": "btnTrend",
+                        "margin": 5,
+                        "width": 98,
+                        "enableToggle": true,
+                        "iconAlign": "top",
+                        "iconCls": "trendChart",
+                        "scale": "large",
+                        "text": "图标",
+                        "toggleGroup": "menu",
+                        "designer|userClassName": "MyButton1"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        }
+    ]
+}

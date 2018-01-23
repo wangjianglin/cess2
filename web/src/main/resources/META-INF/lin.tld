@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<description><![CDATA["To make it easier to access dynamic data;
+                        the Apache Struts framework includes a library of custom tags.
+                        The tags interact with the framework's validation and internationalization features;
+                        to ensure that input is correct and output is localized.
+                        The Struts Tags can be used with JSP FreeMarker or Velocity."]]></description>
+	<display-name>lin Tags</display-name>
+	<tlib-version>2.3</tlib-version>
+	<short-name>lin</short-name>
+	<!-- <uri>/struts-tags</uri> -->
+	<!-- <name>lin</name> -->
+	<!-- 此标签库的一个简短描述  -->
+	<!-- <description>一个自定义标签库</description> -->
+	<!-- 此标签库的版本，有标签开发者自行定义  -->
+	<!-- <tlib-version>1.0</tlib-version> -->
+	<!-- 定义一个简短的名称，主要用来给一些工具使用  -->
+	<!-- <short-name>lin</short-name> -->
+	<!-- 定义此标签库的URI用于唯一标识此标签库，便于页面引用  -->
+	<uri>http://lin/javaweb/tags</uri>
+	<!-- 用户标签文件实现的自定义标签的声明  -->
+	<tag-file>
+		<!-- 自定义标签的名字  -->
+		<name>showSimpleMessage</name>
+		<path>/META-INF/tags/showSimpleMessage.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>showSimpleMessage2</name>
+		<path>/META-INF/tags/showSimpleMessage2.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>showSimpleMessage3</name>
+		<path>/META-INF/tags/showSimpleMessage3.tag</path>
+	</tag-file>
+</taglib>

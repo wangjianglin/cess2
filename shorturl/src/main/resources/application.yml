@@ -1,0 +1,82 @@
+spring.application.name: shorturl-service
+
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+
+io.cess.debug: true
+# 健康检查
+#eureka.client.healthcheck.enabled=true
+
+# 随机端口配置
+#eureka.instance.instance-id=${spring.application.name}:${random.int}
+#server.port=0
+#server.port=${random.int[10000,19999]}
+server.port: 18001
+
+# 端点配置
+#management.context-path=/hello
+#eureka.instance.statusPageUrlPath=${management.context-path}/info
+#eureka.instance.healthCheckUrlPath=${management.context-path}/health
+
+# 开启控制端点
+#endpoints.shutdown.enabled=true
+#endpoints.restart.enabled=true
+
+# 实例名配置
+#eureka.instance.hostname=didi
+#eureka.instance.non-secure-port=8001
+#eureka.instance.secure-port-enabled=true
+
+#debug=false
+io.cess.auth.resource-id: FOO
+
+security.oauth2.resource.token-info-uri: http://localhost:18002/oauth/check_token
+security.oauth2.client.client-id: web_app
+security.oauth2.client.client-secret: 123456
+security.oauth2.client.check-token-endpoint-url: http://localhost:18002/oauth/check_token
+
+#spring.resources.cache-period=600
+#spring:
+#profiles:
+#active: ${profile:dev}
+#resources:
+#cache-period: 600
+
+io.cess.shorturl.pre-url: http://localhost:18001
+
+io.cess.auth.mode: jwt
+io.cess.auth.encrypt-algorithm: ECC
+io.cess.auth.resource-permit-all: false
+#io.cess.auth.public-key: MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAED7v2bNZww5l7lmqVV0FpLhhREotRNS4VJoZ0iZzFu8eXp2HrV6nzkQxe/ViNT4cM9GqZlE9+4iOLP158yqEaxbBDl0Vl5Etr0h5cIJ2WcFzR33eEMe2qQp2H8RZbqqhk
+#ecc key
+io.cess.auth.public-key: MIG/AgEAMBAGByqGSM49AgEGBSuBBAAiBIGnMIGkAgEBBDDTVaaAWRjaJYiN30lRrnIMFfebbUvRjP8M1i4VekGFY6zBrxU8DyMYVKDrR43fRLegBwYFK4EEACKhZANiAAQPu/Zs1nDDmXuWapVXQWkuGFESi1E1LhUmhnSJnMW7x5enYetXqfORDF79WI1Phwz0apmUT37iI4s/XnzKoRrFsEOXRWXkS2vSHlwgnZZwXNHfd4Qx7apCnYfxFluqqGQ=
+#rsa key
+#io.cess.auth.public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgnxkenRor0Ff/qZHiiZFreVwZOWnHMaIZxyMe5I8To9CexD6uYtU332OFrKHTdnvvmcwfL8J1DYLXN33QvGQ4tUsetx5+TvujG7rZCNjY9f0aY40faSOTPymH564moao/Ql3XVIqBBflaljZ2J1zJCfilU+X1281bZKKI+ZSYoa9QB+ZFluS2eXR5z8lLa5GCfTVKfdEkysIAhAl/EL4DOVYw1Y7MF39A/jHdHlcPRDxOKgVTV+u7utBJ2QucGp8Bg022qgD1CpXkPTNlP6oQ9i15fBO/70Ik4HQTjC0IqOTneJW2qAlVHpZ1y5ExqjwXQkAthxXklGUrBJu1tpyHQIDAQAB
+
+#io.cess.auth.public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn+pxh89jRgVYWYycrmTHwVCEnzMnVkEuYw66zYdnDkFvFiseyDOHezDyjSxOeju2UIDAsI6gv9VD6xnNr+WHL7ekmxFbXhMCw5xJMgDRzmFBOi1XHlkP/VWQ9jx1Z52n0lH0arJ2/Z/9efnIDFVb197AV3hZZRc7Ab7IWclDGdqVWxcotNeI62vxvA8QbNdnXkMIdS+v3zoWxtIDatp/sM/mY9hitxW9o/44RK0jGDz4CRXx+v3Zz1t/pX0WvWDAOsrripL5Uo8B24mxFwFC8SwXz9T7ewzNqh/fXJqtwa/ZJ1KpKgb9p8L4ERJQ2imt5PeorC2EfSp5pBmrdB2F7QIDAQAB
+
+io.cess.auth.resource-not-oauth-url: / , ^/((?!/).)*$
+
+#io.cess.auth.resource-jwt-key-uri=http://localhost:18002/oauth/token_key
+
+io.cess.datasource.driver-class-name: com.mysql.jdbc.Driver
+io.cess.datasource.jdbc-url: jdbc:mysql://localhost:3306/db
+io.cess.datasource.url: jdbc:mysql://localhost:3306/db
+io.cess.datasource.username: root
+io.cess.datasource.password:
+io.cess.datasource.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+#validate 加载hibernate时，验证创建数据库表结构
+#create 每次加载hibernate，重新创建数据库表结构，这就是导致数据库表数据丢失的原因。
+#create-drop 加载hibernate时创建，退出是删除表结构
+#update 加载hibernate自动更新数据库结
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect

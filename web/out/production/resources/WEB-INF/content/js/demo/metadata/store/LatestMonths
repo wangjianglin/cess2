@@ -1,0 +1,20 @@
+{
+    "id": "ExtBox1-ext-gen42327",
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "storeId": "MyArrayStore",
+        "model": "MonModel",
+        "data": "[\n{name:'1月', value:'1'},\n{name:'2月', value:'2'}\n]",
+        "designer|userClassName": "LatestMonths"
+    },
+    "customConfigs": [],
+    "designerId": "4fe8b767-6d99-4531-b79a-d8dd9c600db2",
+    "$viewOrder": 0,
+    "expanded": true
+}

@@ -1,0 +1,178 @@
+{
+    "id": "ExtBox1-ext-gen50599",
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "stores": null,
+        "designer|userClassName": "AppLaunchCtrl"
+    },
+    "customConfigs": [],
+    "designerId": "2330115d-3bec-45ef-912e-3cd825c04fa3",
+    "$viewOrder": 0,
+    "expanded": false,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen66793",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonAddClick",
+                "implHandler": "this.unpressOtherBtns(button);\r\nthis.application.widget(this.getTabPanel(), 'FormCtrl', 'MyForm', '1');\r\n//this.getTabPanel().setActiveTab(this.getSampleTest());",
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "Ext.button.Button",
+                "designer|controlQuery": "#btnAdd",
+                "designer|userClassName": "onButtonAddClick"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen67268",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "tabPanel",
+                "selector": "#tabPanel",
+                "designer|userClassName": "tabPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen68640",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "sampleTest",
+                "selector": "#sampleTest",
+                "designer|userClassName": "sampleTest"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen68818",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "historyQuery",
+                "selector": "#historyQuery",
+                "designer|userClassName": "historyQuery"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen69114",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "trendChart",
+                "selector": "#trendChart",
+                "designer|userClassName": "trendChart"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen69892",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "btns",
+                "selector": "#navi button",
+                "designer|userClassName": "btns"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen70129",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "unpressOtherBtns",
+                "designer|params": [
+                    "exceptBtn"
+                ],
+                "implHandler": "var nextBtn = this.getBtns();\r\nwhile (nextBtn) {\r\n    if (nextBtn.itemId !== exceptBtn.itemId && nextBtn.pressed) {\r\n        console.log(nextBtn.itemId);\r\n        nextBtn.toggle(true);\r\n    }\r\n    nextBtn = nextBtn.nextSibling(\"button\");\r\n}\r\n",
+                "designer|userClassName": "unpressOtherBtns"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen76908",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonQryClick",
+                "implHandler": "this.unpressOtherBtns(button);\r\nthis.application.widget(this.getTabPanel(), 'QueryCtrl', 'MyQuery', '2');\r\n//this.getTabPanel().setActiveTab(this.getHistoryQuery());",
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "Ext.button.Button",
+                "designer|controlQuery": "#btnHistory",
+                "designer|userClassName": "onButtonQryClick"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen77503",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonChartClick",
+                "implHandler": "this.unpressOtherBtns(button);\r\nthis.application.widget(this.getTabPanel(), 'ChartCtrl', 'MyChart', '3');\r\n//this.getTabPanel().setActiveTab(this.getTrendChart());",
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "Ext.button.Button",
+                "designer|controlQuery": "#btnTrend",
+                "designer|userClassName": "onButtonChartClick"
+            },
+            "customConfigs": [],
+            "expanded": true
+        }
+    ]
+}

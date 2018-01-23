@@ -1,0 +1,74 @@
+spring.application.name: auth-service
+
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+
+security:
+  user:
+    password: password
+  oauth2:
+    client:
+      client-id: demo
+      client-secret: '{noop}demo'
+      scope: read, write
+      auto-approve-scopes: .*
+    authorization:
+      check-token-access: permitAll()
+server:
+  port: 18002
+  session:
+    cookie:
+      name: OAUTH2SESSION
+#  context-path: /uaa
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+io:
+  cess:
+    auth:
+#      pub-url: http://localhost:5555
+      mode: jwt
+      #rsa key
+#      public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn+pxh89jRgVYWYycrmTHwVCEnzMnVkEuYw66zYdnDkFvFiseyDOHezDyjSxOeju2UIDAsI6gv9VD6xnNr+WHL7ekmxFbXhMCw5xJMgDRzmFBOi1XHlkP/VWQ9jx1Z52n0lH0arJ2/Z/9efnIDFVb197AV3hZZRc7Ab7IWclDGdqVWxcotNeI62vxvA8QbNdnXkMIdS+v3zoWxtIDatp/sM/mY9hitxW9o/44RK0jGDz4CRXx+v3Zz1t/pX0WvWDAOsrripL5Uo8B24mxFwFC8SwXz9T7ewzNqh/fXJqtwa/ZJ1KpKgb9p8L4ERJQ2imt5PeorC2EfSp5pBmrdB2F7QIDAQAB
+#      private-key: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCf6nGHz2NGBVhZjJyuZMfBUISfMydWQS5jDrrNh2cOQW8WKx7IM4d7MPKNLE56O7ZQgMCwjqC/1UPrGc2v5Ycvt6SbEVteEwLDnEkyANHOYUE6LVceWQ/9VZD2PHVnnafSUfRqsnb9n/15+cgMVVvX3sBXeFllFzsBvshZyUMZ2pVbFyi014jra/G8DxBs12deQwh1L6/fOhbG0gNq2n+wz+Zj2GK3Fb2j/jhErSMYPPgJFfH6/dnPW3+lfRa9YMA6yuuKkvlSjwHbibEXAULxLBfP1Pt7DM2qH99cmq3Br9knUqkqBv2nwvgRElDaKa3k96isLYR9KnmkGat0HYXtAgMBAAECggEAFfGUzJ8Pr08SdY9O/LtFkehbmoDpd/OPyvX9ejCHWrRt6uvV2IEBqUzpK6gVyL4i4V8ZkeCwfEJmhH9Q8z8a0thvVPwHvpv7OB5dCOiF4b0Et1f7aWWtRQUV1EQtlB9VJQ4r7Ow6Wck3fiJhahfYd4HQgPA5zB5o8W9djLyKYaSdkTMWCE+Eyap7fsSPEIJSV1aCRxPqS1xV2QLUCbSnYjcEjpXMkFP2zZbCwLRfbnG6uaOjLTrUINN7JQ+F8Xl3YqV/ghb1qk0PYBf6YxX3YjsWu/aExhh9kyUPyelc3biWYL7Ub+k2/DS2g0vBTFLDjGxZkTU6Em6KphS85SYi/QKBgQDxJUCTq0VfqkfCm3qyS91UOv/rJ5w33LlrcNe/h2ZIPFRe6mXLnJx+upnNI8w7GEbLVJWK9aQUNPr79J+B+T3Ij40Xm3i5NYBdv7+Bgt7JVHguMtJzhsTsDEmYiomPK4q+1GU+BiwYtRGNGkkZqtKQsjppS45q08OYi858tH6iKwKBgQCpxDzpttTTvE7+RX/KhxNUMY6BQs9oqI8J+jXmuwpKN92hrMqMOb5NTM9bkorDMqCn+748seLxMfkCwBN/KPtnJA6Y7ztHVitCWZSnrWcmzBYQ+yuPFPPxVyoysgmjm8S2T7RsV9EE9gD2Iws9uuG4tLEtkecrb0FxhEGloNGkRwKBgQDRs0Jv582hPnO+4PQW3nAvEkuAk+Z+kZxQuUV00er5QDVigNVa9esFLYIX6Vxtu1O89+Y/fBNeWyAzQGwBW9wFcAgTEmkuLj9dxyRjHIpea+1Cx4FJY1YVqy3I0BiFfyjdf9g20qlAJx2HJeeRwYHwwHyZGlJTxalfG5zJxzAkFwKBgQCGCDcHVqAFY2ECg6B3J9ns2QtnpnXWbW4xNGil9/oRyrWi1ac8usIyiXgVFkeUAT6yIaF6jf9c6lVtBHTgKl0Ce4dC223zzmZtBgjFsbQE/5BUa9liJ+rJGkZorAPMNklCnv8VoueVgRwVOGnBnPBlQdO45L6cnkQO+ZpSx/t8NQKBgQChlVxZAvHmAav5SC1f67B2sKq1VhdFelK7E9F24zc1/UYGT2Q21XzzhEm9wYxgkeTGfSjRDm2RAGq2GLS9BSSUp92pJEOwEAavMzjhgGjgiqKQnNduXL2rlyRWJWDpVik6ZdJ18J1ZH/R9Q8QFD/ZvKSBG5NjdmHQ+CP3U7gYM9Q==
+      encrypt-algorithm: ECC
+      #ecc key
+      private-key: MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAED7v2bNZww5l7lmqVV0FpLhhREotRNS4VJoZ0iZzFu8eXp2HrV6nzkQxe/ViNT4cM9GqZlE9+4iOLP158yqEaxbBDl0Vl5Etr0h5cIJ2WcFzR33eEMe2qQp2H8RZbqqhk
+      public-key: MIG/AgEAMBAGByqGSM49AgEGBSuBBAAiBIGnMIGkAgEBBDDTVaaAWRjaJYiN30lRrnIMFfebbUvRjP8M1i4VekGFY6zBrxU8DyMYVKDrR43fRLegBwYFK4EEACKhZANiAAQPu/Zs1nDDmXuWapVXQWkuGFESi1E1LhUmhnSJnMW7x5enYetXqfORDF79WI1Phwz0apmUT37iI4s/XnzKoRrFsEOXRWXkS2vSHlwgnZZwXNHfd4Qx7apCnYfxFluqqGQ=
+#rsa key
+#      public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgnxkenRor0Ff/qZHiiZFreVwZOWnHMaIZxyMe5I8To9CexD6uYtU332OFrKHTdnvvmcwfL8J1DYLXN33QvGQ4tUsetx5+TvujG7rZCNjY9f0aY40faSOTPymH564moao/Ql3XVIqBBflaljZ2J1zJCfilU+X1281bZKKI+ZSYoa9QB+ZFluS2eXR5z8lLa5GCfTVKfdEkysIAhAl/EL4DOVYw1Y7MF39A/jHdHlcPRDxOKgVTV+u7utBJ2QucGp8Bg022qgD1CpXkPTNlP6oQ9i15fBO/70Ik4HQTjC0IqOTneJW2qAlVHpZ1y5ExqjwXQkAthxXklGUrBJu1tpyHQIDAQAB
+#      private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCCfGR6dGivQV/+pkeKJkWt5XBk5accxohnHIx7kjxOj0J7EPq5i1TffY4WsodN2e++ZzB8vwnUNgtc3fdC8ZDi1Sx63Hn5O+6MbutkI2Nj1/RpjjR9pI5M/KYfnriahqj9CXddUioEF+VqWNnYnXMkJ+KVT5fXbzVtkooj5lJihr1AH5kWW5LZ5dHnPyUtrkYJ9NUp90STKwgCECX8QvgM5VjDVjswXf0D+Md0eVw9EPE4qBVNX67u60EnZC5wanwGDTbaqAPUKleQ9M2U/qhD2LXl8E7/vQiTgdBOMLQio5Od4lbaoCVUelnXLkTGqPBdCQC2HFeSUZSsEm7W2nIdAgMBAAECggEAX8zcKFuXEDS7Ocby9yaqOcYeArXpP2MzeiCns4Hl7PeZI6mPqvH02jDgRSHF3Q6Iyg4Qt0W6/abAKOp+QxP//8nq4jlFBAtQVKKLB/ZDXmaK94SEXUqXf0Zu4QAzIKCFKWHt1QIh/udcc/vP1Q2kH4N5A45wOKdZXp0b9sd+7P5bPyA1DQ87lB3Cz501hvstCoscTh25EHuB2t8UHIFOQetJ5vCEz/B+9AjVbIhOHduhILIBh/UIlp/eQvRSFQPCBjMl2HvLUN6agp8hav/NoDWr+e4wvcOUqD/jJrxtRnXt/qJOdSMcgWDPa0NDOxOohjHunXs6VdbXE3vsgvQUMQKBgQC6Vl5+zHMdUGKgkxNt9SamcKOSs9WcdRBsLpbOt7dDhU8AABKSoUOdAeMwX6eFluWZAtl06FgrmY7soeIqbDIqRvEAESliuaHT4tCw+JCWD4lb9WhZwh+HYmQ9T1888pSxSGR61YtsRxuelKpV+4zcO/8/32NRTcQfeKwyObxfjwKBgQCzRLHdKQwaWQD+55ckA0zM1cdLkEaxC1SMAD8DOk008uHl/7aaclgepgqO8cJaOT0/gAsDQon9TUVno5DCLziO/ESmPgwBjLjDhPkfQozMgYu0sA6CXHjofr++1+rKfbLhScOCYijeOqajh7W4G5UcZdnHkSR03TkBoK/vny29kwKBgFfniNqejqvEkVKZL7BO13Xra284wUv2+dFfRSuuBZmn2PXyEtDznNcD3e6jIX9nCVdevcFmHroqzf8Z+3zx39SL9QOIFRMK6anwtWzXRjZUjANCyYCWkJMouosl15MECVt9AFHmTci93uy3y4eWjQQUlbzHIK5pVl1Waz2ieRhHAoGBAI+1XQRXGH2ypeqySuYywwldwtMfiJv64j8NH3Z98VCl+FOBp6euTFfdcY9f3Rao1iGmiq2FVMs7e4z2gWA5rJRrRLkj+knvvln2qiLWHbr/irhBfpAgg0iV+y6JNo43MAQMNu+5sttblyR28UTyz5khSPEDuH76rO1SHFfyeh+DAoGBAJMk2LkTyqiYEGT+57CnVm8eUmf8fXOPZzuAg1jCYw8GDIdNR5ruZbbAB2U7bdil9tjCPHejTLqqweAJxKxhY9pcCj6XH4HiZd8taJ4eH3I/pwRAyev2kXvKtItPNPQ1LeYJGJQqYTew3JoQRv4FttHOcNYHsVTMZblPZqepnEWA
+
+io.cess.auth.access-token-validity-seconds: 7200 #2 * 60 * 60
+io.cess.auth.refresh-token-validity-seconds: 5184000 #60 * 24 * 60 * 60
+
+io.cess.auth.resource-permit-all: false
+
+io.cess.auth.resource-not-oauth-url: / , /oauth/login, /ui/.*,/ui
+
+io.cess.auth.openid-key: 3455kkifaeq#42#434355
+
+io.cess.datasource.driver-class-name: com.mysql.jdbc.Driver
+io.cess.datasource.jdbc-url: jdbc:mysql://localhost:3306/db
+io.cess.datasource.url: jdbc:mysql://localhost:3306/db
+io.cess.datasource.username: root
+io.cess.datasource.password:
+io.cess.datasource.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+#validate 加载hibernate时，验证创建数据库表结构
+#create 每次加载hibernate，重新创建数据库表结构，这就是导致数据库表数据丢失的原因。
+#create-drop 加载hibernate时创建，退出是删除表结构
+#update 加载hibernate自动更新数据库结
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+mybatis.type-aliases-package: io.cess.auth.entity

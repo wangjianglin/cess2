@@ -1,0 +1,32 @@
+//uploadArchives {
+//	repositories {
+//		mavenDeployer {
+//			pom.artifactId = 'lin-util'
+//		}
+//	}
+//}
+
+//sourceCompatibility = 1.9
+//targetCompatibility = 1.9
+
+//compileJava {
+////    inputs.property("moduleName", moduleName)
+//    doFirst {
+////        options.compilerArgs = [
+////                '--module-path', classpath.asPath,
+////                '--add-modules', 'junit',
+////                '--add-reads', "$moduleName=junit",
+////                '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
+////        ]
+//        options.compilerArgs = [
+//                '--module-path', classpath.asPath,
+//                '--add-modules', 'java.desktop,java.sql'
+//        ]
+//        classpath = files()
+//    }
+//}
+
+dependencies{
+    compile("org.bouncycastle:bcprov-jdk15on:1.59")
+    compile("org.bouncycastle:bcpg-jdk15on:1.59")
+}
