@@ -11,4 +11,6 @@ import java.lang.annotation.*;
 public @interface PermissionDesc {
     String code();
     String desc();
+    String scope();
+    String role();
 }

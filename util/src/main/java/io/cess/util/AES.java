@@ -103,22 +103,4 @@ public class AES {
         cipher.init(Cipher.DECRYPT_MODE, skeySpec);
         return cipher.doFinal(sSrc);
     }
-
- 
-    public static void main(String[] args) throws Exception {
-
-        AES aes = new AES.B256("iioioioooooooooooorrrrrrr");
-
-        String enStr = aes.encrypt("========");
-        System.out.println("加密后的字串是：" + enStr);
-
-        String DeString = aes.decrypt(enStr);
-        System.out.println("解密后的字串是：" + DeString);
-
-        //..MGQCMErxZIBiSj2AEOyrn0OvqQ3gdzg3PSe3sgIHHWeR-PV8Qrxh0WgwOPYB1DSDOwQslwIwDPlOvWiE9tfZOUOlcxE_GuZtifhdEd_yIfBwECLzv078tSSxBk-3UKWdlIFONHOg
-
-        System.out.println(new String(Base64.getDecoder().decode("eyJhbGciOiJTSEExd2l0aEVDRFNBIiwidHlwIjoiSldUIn0")));
-        System.out.println(new String(Base64.getDecoder().decode("eyJhdWQiOlsiRk9PIl0sInVzZXJfbmFtZSI6IjEiLCJzY29wZSI6WyJHT09EUyJdLCJleHAiOjE1MTU4MzY1NTUsImF1dGhvcml0aWVzIjpbImdvb2RzOnNlbGVjdCJdLCJqdGkiOiI0M2JhZmE2MC04ZTg2LTQ2OGMtOTBlNC03ZTY5Nzc2OWY0MzIiLCJjbGllbnRfaWQiOiJ3ZWJfYXBwIn0")));
-
-    }
 }

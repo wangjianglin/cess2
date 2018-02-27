@@ -1,9 +1,5 @@
 package io.cess.util;
 
-import com.sun.tools.javac.util.ArrayUtils;
-import org.bouncycastle.jce.ECNamedCurveTable;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -11,7 +7,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.*;
 import java.security.interfaces.RSAKey;
 import java.security.interfaces.RSAPrivateKey;
@@ -146,7 +141,7 @@ public class Rsa {
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
-    public static KeyPair generateKeyPair(int keySize) throws NoSuchProviderException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+    public static KeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException {
 
         KeyPairGenerator kpg = KeyPairGenerator.getInstance(ALGORITHM);
         kpg.initialize(keySize, new SecureRandom());

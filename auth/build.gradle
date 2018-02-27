@@ -2,16 +2,8 @@
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-//sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
-//    compile "org.hibernate:hibernate-core:5.2.0.Final"
-//    compile "org.hibernate:hibernate-entitymanager:5.1.0.Final"
-//    compile project(':core')
 
     compile "mysql:mysql-connector-java:6.0.6"
 
@@ -42,43 +34,11 @@ dependencies {
 }
 
 
-
-ext {
-    springCloudVersion = 'Finchley.M5'
+bootRun {
+    jvmArgs = [
+            '--add-modules', 'java.xml.bind',
+    ]
 }
-
-//compileJava {
-//
-//    doFirst {
-//        options.compilerArgs = [
-//                '--module-path', classpath.asPath,
-//                '--add-modules', 'java.xml.bind',
-//        ]
-//    }
-//}
-//
-//bootRun {
-//    jvmArgs = [
-//            '--add-modules', 'java.xml.bind',
-//    ]
-//}
-
-//dependencies {
-//
-//    //compile "io.cess:core:0.1.0.2"
-//
-//    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
-//    compile('org.springframework.cloud:spring-cloud-starter-zuul:2.0.0.M2')
-////    compile('org.springframework.cloud:spring-boot-starter-test')
-////    compile('com.netflix.hystrix:hystrix-core:1.5.9')
-////    compile('com.netflix.hystrix:hystrix-metrics-event-stream:1.5.9')
-////    compile('com.netflix.hystrix:hystrix-javanica:1.5.9')
-////    compile('com.netflix.hystrix:hystrix-servo-metrics-publisher:1.5.9')
-//    compile('org.springframework.boot:spring-boot-starter-actuator')
-//
-//    testCompile('org.springframework.boot:spring-boot-starter-test')
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
-//}
 
 dependencyManagement {
     imports {

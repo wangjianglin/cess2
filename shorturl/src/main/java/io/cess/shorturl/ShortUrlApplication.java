@@ -5,6 +5,7 @@ import io.cess.cloud.ResourceRestTemplate;
 import io.cess.cloud.config.resourceServer.ResourceServerConfig;
 import io.cess.core.CessConfig;
 import io.cess.shorturl.config.DataConfig;
+import io.cess.shorturl.config.SwaggerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -18,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @ResourceServerConfig
 @CessConfig
-@Import(DataConfig.class)
+@Import({DataConfig.class, SwaggerConfig.class})
 public class ShortUrlApplication {
 
     public static void main(String[] args) {

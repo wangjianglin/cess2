@@ -4,6 +4,8 @@ package io.cess.shorturl.api;
 import io.cess.core.spring.CessBody;
 import io.cess.shorturl.entity.ShortUrl;
 import io.cess.shorturl.service.ShortUrlService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.Date;
 
+@Api(value = "Sample-API", description = "测试")
 @RestController
 @RequestMapping({"api"})
 public class ApiControler {
@@ -23,6 +26,7 @@ public class ApiControler {
     @Autowired
     private ShortUrlService service;
 
+    @ApiOperation(value = "获取用户列表",notes = "根据url的id来获取用户详细信息，返回List<User>类型用户信息的JSON")
     @RequestMapping("/a")
     @CessBody
     public String index() {

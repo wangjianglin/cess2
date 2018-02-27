@@ -48,10 +48,11 @@ subprojects {
 //			springBootVersion = '2.0.0.M4'
 		}
 		repositories {
-			mavenCentral()
-			maven { url "https://repo.spring.io/libs-snapshot" }
-			maven { url "https://repo.spring.io/snapshot" }
-			maven { url "https://repo.spring.io/milestone" }
+			maven {url prop.getProperty('maven.url')}
+//			mavenCentral()
+//			maven { url "https://repo.spring.io/libs-snapshot" }
+//			maven { url "https://repo.spring.io/snapshot" }
+//			maven { url "https://repo.spring.io/milestone" }
 		}
 		dependencies {
 			classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -63,9 +64,10 @@ subprojects {
 //	apply plugin: 'scala'
 
     repositories {
-		maven {
-			url 'https://repo.spring.io/libs-milestone'
-		}
+//		maven {
+//			url 'https://repo.spring.io/libs-milestone'
+//		}
+		maven {url prop.getProperty('maven.url')}
        //mavenCentral()
     }
 

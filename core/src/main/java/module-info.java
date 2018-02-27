@@ -1,4 +1,4 @@
-//module core.main {
+//module io.cess.core {
 ////
 ////    requires javax.jws;
 ////    requires javax.jws.soap;
@@ -23,7 +23,7 @@
 ////    requires java.xml.ws;
 ////    requires jboss.
 //
-//    exports lin.core;
-//    exports lin.core.jpa;
+//    exports io.cess.core;
+//    exports io;
 //
 //}

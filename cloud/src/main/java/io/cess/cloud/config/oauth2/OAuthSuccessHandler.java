@@ -57,6 +57,11 @@ public class OAuthSuccessHandler extends
 
         // Use the DefaultSavedRequest URL
         String targetUrl = savedRequest.getRedirectUrl();
+
+        String scheme = request.getHeader("X-Forwarded-Proto");
+        if(scheme != null && !"".equals(scheme.trim())){
+            targetUrl = targetUrl.replaceFirst(request.getScheme(),scheme.split(",")[0]);
+        }
         if(this.pre != null) {
             targetUrl = targetUrl.replaceFirst("http.*//.*?(?<!/)/",pre);
         }

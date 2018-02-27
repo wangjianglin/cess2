@@ -1,10 +1,3 @@
-//uploadArchives {
-//	repositories {
-//		mavenDeployer {
-//			pom.artifactId = 'lin-client'
-//		}
-//	}
-//}
 
 
 dependencies {
